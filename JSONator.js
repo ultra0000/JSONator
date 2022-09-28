@@ -474,6 +474,31 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
      returnObject.debug = luaString;
   }
 
+
+  var previousCounts = returnObject.counts;
+  delete returnObject.counts;
+  returnObject.counts.birds = 0;
+  returnObject.counts.blocks = 0;
+  returnObject.counts.joints = 0;
+
+  // counts
+  Object.keys(previousCounts).forEach(function(key){
+      var subValue = previousCounts[key].definition;
+      // TODO: joints
+      if (key.includes("Block"))
+      {
+         returnObject.counts.blocks + 1;
+      }
+      else if (key.includes("Bird"))
+      {
+         returnObject.counts.blocks + 1;
+      }
+      else
+      {
+         returnObject.counts.blocks + 1;
+      }
+   });
+
   // world stuff
   Object.keys(returnObject.world).forEach(function(key){
     Object.keys(returnObject.world[key]).forEach(function(subKey){
@@ -514,7 +539,7 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
   
   // some deleting
   delete returnObject.physicsToWorld;
-  
+
   //returnObject["camera"].push(parseCamera(returnObject.birdCameraData));
 
   return returnObject;
