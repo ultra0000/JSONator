@@ -538,6 +538,10 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
   
   // some deleting
   delete returnObject.physicsToWorld;
+  returnObject.scoreGold = returnObject.scores.Gold;
+  returnObject.scoreSilver = returnObject.scores.Silver;
+  returnObject.scoreEagle = returnObject.scores.eagleScore;
+  delete returnObject.scores;
 
   //returnObject["camera"].push(parseCamera(returnObject.birdCameraData));
 
