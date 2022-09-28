@@ -481,25 +481,21 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
   returnObject.counts.blocks = 0;
   returnObject.counts.joints = 0;
 
-  // counts
-  Object.keys(previousCounts).forEach(function(key){
-      // TODO: joints
-      if (key.includes("Block"))
-      {
-         returnObject.counts.blocks++;
-      }
-      else if (key.includes("Bird"))
-      {
-         returnObject.counts.birds++;
-      }
-      else
-      {
-         returnObject.counts.blocks++;
-      }
-   });
-
   // world stuff
   Object.keys(returnObject.world).forEach(function(key){
+    // TODO: joints
+    if (key.includes("Block"))
+    {
+       returnObject.counts.blocks++;
+    }
+    else if (key.includes("Bird"))
+    {
+       returnObject.counts.birds++;
+    }
+    else
+    {
+       returnObject.counts.blocks++;
+    }
     Object.keys(returnObject.world[key]).forEach(function(subKey){
         var subValue = returnObject.world[key].definition;
         if (typeof subValue === 'string' || subValue instanceof String)
