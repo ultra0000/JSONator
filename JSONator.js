@@ -512,7 +512,7 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
   returnObject.counts.blocks = 0;
   returnObject.counts.joints = 0;
 
-  var indexId = 1;
+  var indexId = 0;
 
   // world stuff
   Object.keys(returnObject.world).forEach(function(key){
