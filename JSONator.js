@@ -522,7 +522,11 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
            subValue = convertName(subValue);
            returnObject.world[key].id = subValue;
            returnObject.world[key].angle = convertAngle(returnObject.world[key].angle);
-           this.mObjectNamesToIds[returnObject.world[key].name] = returnObject.counts.blocks;
+           if (returnObject.counts.blocks != 0)
+           {
+               var actualId = returnObject.counts.blocks + 1;
+               this.mObjectNamesToIds[returnObject.world[key].name] = actualId;
+           }
            delete returnObject.world[key].definition;
            delete returnObject.world[key].name;
            delete returnObject.world[key].startNumber;
@@ -538,6 +542,10 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
    {
       returnObject.counts.birds++;
       returnObject.world["bird_" + returnObject.counts.birds] = returnObject.world[key];
+      delete returnObject.world[key];
+   }
+   else if (returnObject.world[key].id.includes("Ground"))
+   {
       delete returnObject.world[key];
    }
    else
@@ -562,6 +570,8 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
       // couldn't find any levels in ab chrome that use this, 
       // maybe it's used in other webgames?
       delete returnObject.joints[key].coordType;
+
+      delete returnObject.joints[key].name;
       
       returnObject.world["joint_" + returnObject.counts.joints] = returnObject.joints[key];
    });
@@ -595,8 +605,6 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
    returnObject.scoreEagle = returnObject.scores.eagleScore;
    delete returnObject.scores;
   }
-
-  //returnObject["camera"].push(parseCamera(returnObject.birdCameraData));
 
   return returnObject;
 }
