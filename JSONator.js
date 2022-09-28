@@ -447,7 +447,6 @@ function parseCamera(data, pixelRatio, id)
   parsedCamaraData.scale = scale;
   parsedCamaraData.id = id;
 
-  console.log('parsed camera data: ' + JSON.stringify(parsedCamaraData));
   return parsedCamaraData;
 }
 
@@ -477,6 +476,7 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
 
   var previousCounts = returnObject.counts;
   delete returnObject.counts;
+  returnObject.counts = [];
   returnObject.counts.birds = 0;
   returnObject.counts.blocks = 0;
   returnObject.counts.joints = 0;
