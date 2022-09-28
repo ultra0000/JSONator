@@ -476,26 +476,25 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
 
   var previousCounts = returnObject.counts;
   delete returnObject.counts;
-  returnObject.counts = [];
+  returnObject.counts = {};
   returnObject.counts.birds = 0;
   returnObject.counts.blocks = 0;
   returnObject.counts.joints = 0;
 
   // counts
   Object.keys(previousCounts).forEach(function(key){
-      var subValue = previousCounts[key].definition;
       // TODO: joints
       if (key.includes("Block"))
       {
-         returnObject.counts.blocks + 1;
+         returnObject.counts.blocks++;
       }
       else if (key.includes("Bird"))
       {
-         returnObject.counts.blocks + 1;
+         returnObject.counts.birds++;
       }
       else
       {
-         returnObject.counts.blocks + 1;
+         returnObject.counts.blocks++;
       }
    });
 
