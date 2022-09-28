@@ -2,6 +2,23 @@ sNameHACK = [];
 
 var nameHackInitialized = false;
 
+class HashMap
+{
+   HashMap(sourceObject = new Object())
+   {
+      var key = null;
+      if(sourceObject)
+      {
+         for(key in sourceObject)
+         {
+            this[key] = sourceObject[key];
+         }
+      }
+   }
+}
+
+var mObjectNamesToIds = new HashMap();
+
 function initNameHACK()
 {
    nameHackInitialized = true;
@@ -505,12 +522,12 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
            subValue = convertName(subValue);
            returnObject.world[key].id = subValue;
            returnObject.world[key].angle = convertAngle(returnObject.world[key].angle);
+           this.mObjectNamesToIds[returnObject.world[key].name] = returnObject.counts.blocks;
            delete returnObject.world[key].definition;
            delete returnObject.world[key].name;
            delete returnObject.world[key].startNumber;
        }
    });
-   // TODO: joints
    if (key.includes("Block"))
    {
       returnObject.counts.blocks++;
@@ -529,11 +546,26 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
       returnObject.world["block_" + returnObject.counts.blocks] = returnObject.world[key];
       delete returnObject.world[key];
    }
-
-    key = convertName(key);
-   });
+  });
 
    returnObject.camera = [];
+
+   // joint stuff
+   Object.keys(returnObject.joints).forEach(function(key){
+      returnObject.counts.joints++;
+      returnObject.joints[key].index1 = this.mObjectNamesToIds[returnObject.joints[key].end1];
+      returnObject.joints[key].index2 = this.mObjectNamesToIds[returnObject.joints[key].end2];
+      
+      delete returnObject.joints[key].end1;
+      delete returnObject.joints[key].end2;
+
+      // couldn't find any levels in ab chrome that use this, 
+      // maybe it's used in other webgames?
+      delete returnObject.joints[key].coordType;
+      
+      returnObject.world["joint_" + returnObject.counts.joints] = returnObject.joints[key];
+   });
+   delete returnObject.joints;
 
   // other
   Object.keys(returnObject).forEach(function(key){
@@ -557,10 +589,12 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
   
   // some deleting
   delete returnObject.physicsToWorld;
-  returnObject.scoreGold = returnObject.scores.Gold;
-  returnObject.scoreSilver = returnObject.scores.Silver;
-  returnObject.scoreEagle = returnObject.scores.eagleScore;
-  delete returnObject.scores;
+  if (returnObject.scores) {
+   returnObject.scoreGold = returnObject.scores.Gold;
+   returnObject.scoreSilver = returnObject.scores.Silver;
+   returnObject.scoreEagle = returnObject.scores.eagleScore;
+   delete returnObject.scores;
+  }
 
   //returnObject["camera"].push(parseCamera(returnObject.birdCameraData));
 
