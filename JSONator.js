@@ -513,6 +513,8 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
   returnObject.counts.blocks = 0;
   returnObject.counts.joints = 0;
 
+  var indexId = 1;
+
   // world stuff
   Object.keys(returnObject.world).forEach(function(key){
    Object.keys(returnObject.world[key]).forEach(function(subKey){
@@ -522,10 +524,10 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
            subValue = convertName(subValue);
            returnObject.world[key].id = subValue;
            returnObject.world[key].angle = convertAngle(returnObject.world[key].angle);
-           if (returnObject.counts.blocks != 0)
+           if (!returnObject.world[key].name.includes("Bird") && !returnObject.world[key].name.includes("ground"))
            {
-               var actualId = returnObject.counts.blocks + 1;
-               this.mObjectNamesToIds[returnObject.world[key].name] = actualId;
+               indexId++;
+               this.mObjectNamesToIds[returnObject.world[key].name] = indexId;
            }
            delete returnObject.world[key].definition;
            delete returnObject.world[key].name;
@@ -561,8 +563,8 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
    // joint stuff
    Object.keys(returnObject.joints).forEach(function(key){
       returnObject.counts.joints++;
-      returnObject.joints[key].index1 = this.mObjectNamesToIds[returnObject.joints[key].end1];
-      returnObject.joints[key].index2 = this.mObjectNamesToIds[returnObject.joints[key].end2];
+      returnObject.joints[key].index1 = this.mObjectNamesToIds[returnObject.joints[key].end1] - 1;
+      returnObject.joints[key].index2 = this.mObjectNamesToIds[returnObject.joints[key].end2] - 1;
       
       delete returnObject.joints[key].end1;
       delete returnObject.joints[key].end2;
