@@ -447,7 +447,22 @@ function parseCamera(data, pixelRatio, id)
   parsedCamaraData.scale = scale;
   parsedCamaraData.id = id;
 
+  // TODO: more?
+  if(parsedCamaraData.id == "birdCameraData")
+  {
+      parsedCamaraData.id = "Slingshot";
+  }
+  else if (parsedCamaraData.id == "castleCameraData")
+  {
+      parsedCamaraData.id = "Castle";
+  }
+
   return parsedCamaraData;
+}
+
+function convertAngle(angle)
+{
+   return angle * 180 / Math.PI;
 }
 
 function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = false)
@@ -483,30 +498,37 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
 
   // world stuff
   Object.keys(returnObject.world).forEach(function(key){
-    // TODO: joints
-    if (key.includes("Block"))
-    {
-       returnObject.counts.blocks++;
-    }
-    else if (key.includes("Bird"))
-    {
-       returnObject.counts.birds++;
-    }
-    else
-    {
-       returnObject.counts.blocks++;
-    }
-    Object.keys(returnObject.world[key]).forEach(function(subKey){
-        var subValue = returnObject.world[key].definition;
-        if (typeof subValue === 'string' || subValue instanceof String)
-        {
-            subValue = convertName(subValue);
-            returnObject.world[key].id = subValue;
-            delete returnObject.world[key].definition;
-            delete returnObject.world[key].name;
-            delete returnObject.world[key].startNumber;
-        }
-    });
+   Object.keys(returnObject.world[key]).forEach(function(subKey){
+       var subValue = returnObject.world[key].definition;
+       if (typeof subValue === 'string' || subValue instanceof String)
+       {
+           subValue = convertName(subValue);
+           returnObject.world[key].id = subValue;
+           returnObject.world[key].angle = convertAngle(returnObject.world[key].angle);
+           delete returnObject.world[key].definition;
+           delete returnObject.world[key].name;
+           delete returnObject.world[key].startNumber;
+       }
+   });
+   // TODO: joints
+   if (key.includes("Block"))
+   {
+      returnObject.counts.blocks++;
+      returnObject.world["block_" + returnObject.counts.blocks] = returnObject.world[key];
+      delete returnObject.world[key];
+   }
+   else if (key.includes("Bird"))
+   {
+      returnObject.counts.birds++;
+      returnObject.world["bird_" + returnObject.counts.birds] = returnObject.world[key];
+      delete returnObject.world[key];
+   }
+   else
+   {
+      returnObject.counts.blocks++;
+      returnObject.world["block_" + returnObject.counts.blocks] = returnObject.world[key];
+      delete returnObject.world[key];
+   }
 
     key = convertName(key);
    });
@@ -524,8 +546,8 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
 
    if (key.endsWith("CameraData"))
    {
-       returnObject["camera"].push(parseCamera(returnObject[key], returnObject.physicsToWorld, key));
-       delete returnObject[key];
+      returnObject["camera"].push(parseCamera(returnObject[key], returnObject.physicsToWorld, key));
+      delete returnObject[key];
    }
   });
 
