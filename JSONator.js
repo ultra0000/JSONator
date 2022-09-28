@@ -447,7 +447,7 @@ function parseCamera(data, pixelRatio, id)
   parsedCamaraData.scale = scale;
   parsedCamaraData.id = id;
 
-  // TODO: more?
+  // afaik these are the only ones but there could be more
   if(parsedCamaraData.id == "birdCameraData")
   {
       parsedCamaraData.id = "Slingshot";
