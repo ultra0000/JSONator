@@ -508,6 +508,7 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
             returnObject.world[key].id = subValue;
             delete returnObject.world[key].definition;
             delete returnObject.world[key].name;
+            delete returnObject.world[key].startNumber;
         }
     });
 
