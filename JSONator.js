@@ -505,7 +505,6 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
      returnObject.debug = luaString;
   }
 
-
   var previousCounts = returnObject.counts;
   delete returnObject.counts;
   returnObject.counts = {};
@@ -526,8 +525,8 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
            returnObject.world[key].angle = convertAngle(returnObject.world[key].angle);
            if (!returnObject.world[key].name.includes("Bird") && !returnObject.world[key].name.includes("ground"))
            {
-               indexId++;
                this.mObjectNamesToIds[returnObject.world[key].name] = indexId;
+               indexId++;
            }
            delete returnObject.world[key].definition;
            delete returnObject.world[key].name;
@@ -563,8 +562,8 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
    // joint stuff
    Object.keys(returnObject.joints).forEach(function(key){
       returnObject.counts.joints++;
-      returnObject.joints[key].index1 = this.mObjectNamesToIds[returnObject.joints[key].end1] - 1;
-      returnObject.joints[key].index2 = this.mObjectNamesToIds[returnObject.joints[key].end2] - 1;
+      returnObject.joints[key].index1 = this.mObjectNamesToIds[returnObject.joints[key].end1];
+      returnObject.joints[key].index2 = this.mObjectNamesToIds[returnObject.joints[key].end2];
       
       delete returnObject.joints[key].end1;
       delete returnObject.joints[key].end2;
