@@ -290,8 +290,44 @@ function initNameHACK()
    sNameHACK["decoration"] = "OTHER_MATERIALS";
 }
 
+
+sNameHACK["StaticBlockTheme17_01"] = "TERRAIN_TEXTURED_HILLS_5X2";
+sNameHACK["StaticBlockTheme17_02"] = "TERRAIN_TEXTURED_HILLS_10X2";
+sNameHACK["StaticBlockTheme17_03"] = "TERRAIN_TEXTURED_HILLS_32X2";
+sNameHACK["StaticBlockTheme17_04"] = "TERRAIN_TEXTURED_HILLS_5X5";
+sNameHACK["StaticBlockTheme17_05"] = "TERRAIN_TEXTURED_HILLS_10X10";
+sNameHACK["StaticBlockTheme17_06"] = "TERRAIN_TEXTURED_HILLS_1X1";
+
 function convertName(name)
 {
+   if (name.startsWith("StaticBlockTheme") && !sNameHACK[name])
+   {
+      // yandere dev type shit, oh well
+      if (name.endsWith("_01"))
+      {
+         name = "TERRAIN_TEXTURED_HILLS_5X2";
+      }
+      else if (name.endsWith("_02"))
+      {
+         name = "TERRAIN_TEXTURED_HILLS_10X2";
+      }
+      else if (name.endsWith("_03"))
+      {
+         name = "TERRAIN_TEXTURED_HILLS_32X2";
+      }
+      else if (name.endsWith("_04"))
+      {
+         name = "TERRAIN_TEXTURED_HILLS_5X5";
+      }
+      else if (name.endsWith("_05"))
+      {
+         name = "TERRAIN_TEXTURED_HILLS_10X10";
+      }
+      else if (name.endsWith("_06"))
+      {
+         name = "TERRAIN_TEXTURED_HILLS_1X1";
+      }
+   }
    return sNameHACK[name] || name;
 }
 
