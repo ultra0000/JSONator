@@ -290,14 +290,6 @@ function initNameHACK()
    sNameHACK["decoration"] = "OTHER_MATERIALS";
 }
 
-
-sNameHACK["StaticBlockTheme17_01"] = "TERRAIN_TEXTURED_HILLS_5X2";
-sNameHACK["StaticBlockTheme17_02"] = "TERRAIN_TEXTURED_HILLS_10X2";
-sNameHACK["StaticBlockTheme17_03"] = "TERRAIN_TEXTURED_HILLS_32X2";
-sNameHACK["StaticBlockTheme17_04"] = "TERRAIN_TEXTURED_HILLS_5X5";
-sNameHACK["StaticBlockTheme17_05"] = "TERRAIN_TEXTURED_HILLS_10X10";
-sNameHACK["StaticBlockTheme17_06"] = "TERRAIN_TEXTURED_HILLS_1X1";
-
 function convertName(name)
 {
    if (name.startsWith("StaticBlockTheme") && !sNameHACK[name])
