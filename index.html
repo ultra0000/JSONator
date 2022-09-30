@@ -7,9 +7,19 @@
     <body>
         <h1>JSONator</h1>
         <p>Upload a Lua level from an Angry Birds game and you might get a JSON level for the webgames.</p>
+
+        <p>Select themes:</p>
+        <input type="radio" id="ab_classic" name="gametype" value="ab_classic" checked>
+        <label for="ab_classic">Angry Birds Classic</label>
         <br>
 
-        <input type="file" accept=".lua" multiple>
+        <input type="radio" id="ab_seasons" name="gametype" value="ab_seasons">
+        <label for="ab_seasons">Angry Birds Seasons</label>
+        <br>
+
+        <br><br>
+
+        <input id="luaInput" type="file" accept=".lua" multiple>
         <br><br><br>
         <button type="button" id="parse">Parse</button> <span hidden>You need to upload a level first</span>
         <br><br>

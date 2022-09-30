@@ -1,6 +1,7 @@
 sNameHACK = [];
 
-var nameHackInitialized = false;
+var selectedABClassic = false;
+var selectedABSeasons = false;
 
 class HashMap
 {
@@ -227,9 +228,9 @@ function initNameHACK()
    sNameHACK["ExtraCowboyHelmetSmall_1"] = "MISC_COWBOY_HAT_SMALL";
    sNameHACK["ExtraSheriffHat_1"] = "MISC_SHERIFF_HAT_1";
    sNameHACK["ExtraSheriffHat_2"] = "MISC_SHERIFF_HAT_2";
-   sNameHACK["ExtraRopeThick01"] = "MISC_ROPE_THICK";
-   sNameHACK["ExtraRopeThin01"] = "MISC_ROPE_THIN";
-   sNameHACK["ExtraRopeThin02"] = "MISC_ROPE_THIN_SHORT";
+   sNameHACK["ExtraRopeThick01"] = "BLOCK_ROPE_THICK";
+   sNameHACK["ExtraRopeThin01"] = "BLOCK_ROPE_THIN";
+   sNameHACK["ExtraRopeThin02"] = "BLOCK_ROPE_THIN_SHORT";
    sNameHACK["ExtraHelmetSmall"] = "MISC_HELMET_SMALL";
    sNameHACK["ExtraHelmetBig"] = "MISC_HELMET_BIG";
    sNameHACK["ExtraHelmetBoss"] = "MISC_HELMET_BOSS";
@@ -265,16 +266,28 @@ function initNameHACK()
    sNameHACK["theme6"] = "BACKGROUND_FOREST";
    sNameHACK["theme7"] = "BACKGROUND_CITY";
    sNameHACK["theme8"] = "BACKGROUND_CLOUDS";
-   sNameHACK["theme9"] = "BACKGROUND_BLUE_GRASS";
-   sNameHACK["theme10"] = "BACKGROUND_GREEN_PLANTS";
-   sNameHACK["theme11"] = "BACKGROUND_RED_FLOWERS";
-   sNameHACK["theme12"] = "BACKGROUND_BUSHES";
-   sNameHACK["theme13"] = "BACKGROUND_CACTUS_DESERT";
-   sNameHACK["theme14"] = "BACKGROUND_FOREST";
-   sNameHACK["theme15"] = "BACKGROUND_CITY";
-   sNameHACK["theme16"] = "BACKGROUND_WESTERN";
-   sNameHACK["theme17"] = "BACKGROUND_CAVE";
-   sNameHACK["theme19"] = "BACKGROUND_FB_BEACH";
+   sNameHACK["theme9"] = "BACKGROUND_BIG_SETUP_BLUE_GRASS";
+   sNameHACK["theme10"] = "BACKGROUND_BIG_SETUP_GREEN_PLANTS";
+   sNameHACK["theme11"] = "BACKGROUND_BIG_SETUP_RED_FLOWERS";
+   sNameHACK["theme12"] = "BACKGROUND_BIG_SETUP_BUSHES";
+   sNameHACK["theme13"] = "BACKGROUND_BIG_SETUP_CACTUS_DESERT";
+   sNameHACK["theme14"] = "BACKGROUND_BIG_SETUP_FOREST";
+   sNameHACK["theme15"] = "BACKGROUND_BIG_SETUP_CITY";
+   if (selectedABClassic)
+   {
+      sNameHACK["theme16"] = "BACKGROUND_WESTERN";
+      sNameHACK["theme17"] = "BACKGROUND_CAVE";
+      sNameHACK["theme19"] = "BACKGROUND_FB_BEACH";
+   }
+   else if (selectedABSeasons)
+   {
+      sNameHACK["theme16"] = "BACKGROUND_HALLOWEEN_2011";
+      sNameHACK["theme17"] = "BACKGROUND_XMAS";
+      sNameHACK["theme20"] = "BACKGROUND_EASTER";
+      sNameHACK["theme21"] = "BACKGROUND_SUMMERPIGNIC";
+      sNameHACK["theme23"] = "BACKGROUND_MOONFESTIVAL";
+      sNameHACK["theme27"] = "BACKGROUND_CHERRY_BLOSSOM";
+   }
    sNameHACK["ExtraFazerSquare"] = "FAZER_BLOCK";
    sNameHACK["ExtraFazerPyramid"] = "FAZER_CANDY_PYRAMID";
    sNameHACK["ExtraFazerCone"] = "FAZER_CANDY_CONE";
@@ -512,10 +525,7 @@ function convertAngle(angle)
 
 function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = false)
 {
-  if (!nameHackInitialized)
-  {
-    initNameHACK();
-  }
+   initNameHACK();
 
   var jsonString = null;
   var returnObject = null;
@@ -640,14 +650,24 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
 
 // based on birdecryptor too
 document.getElementById("parse").addEventListener('click', () => {
-    if (document.querySelector('input').files.length == 0)
+    if (document.querySelector("#ab_classic").checked)
+    {
+      selectedABSeasons = false;
+      selectedABClassic = true;
+    }
+    else if (document.querySelector("#ab_seasons").checked)
+    {
+      selectedABClassic = false;
+      selectedABSeasons = true;
+    }
+    if (document.getElementById('luaInput').files.length == 0)
         document.querySelector('span').hidden = false;
     else {
         document.querySelector('span').hidden = true;
         
         // Iterate through each uploaded file
-        for (let i = 0; i < document.querySelector('input').files.length; i++) {
-            let lvl = document.querySelector('input').files[i],
+        for (let i = 0; i < document.getElementById('luaInput').files.length; i++) {
+            let lvl = document.getElementById('luaInput').files[i],
                 reader = new FileReader();
 
             reader.addEventListener(('load'), data => {
@@ -664,5 +684,5 @@ document.getElementById("parse").addEventListener('click', () => {
                 reader.readAsText(lvl);
             }
         }
-    }
+      }
 });
