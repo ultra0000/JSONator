@@ -301,6 +301,23 @@ function initNameHACK()
    sNameHACK["extras"] = "OTHER_MATERIALS";
    sNameHACK["default"] = "DEFAULT";
    sNameHACK["decoration"] = "OTHER_MATERIALS";
+   sNameHACK["SakuraFlower_Center"] = "B_SAKURAFLOWER_CENTER";
+   sNameHACK["SakuraFlower_Petal"] = "B_SAKURAFLOWER_PETAL";
+   sNameHACK["CandyStick_1"] = "B_CANDYSTICK";
+   sNameHACK["RiceBall_1"] = "B_RICEBALL";
+   sNameHACK["Miso_1"] = "B_MISO";
+   sNameHACK["JapaneseUmbrella_1"] = "B_JAPANESE_UMBRELLA";
+   sNameHACK["ShogunHelmet_1"] = "B_SHOGUN_HELMET";
+   sNameHACK["SushiBandanna_1"] = "B_SUSHICHEF_BANDANNA";
+   sNameHACK["Sushi_1"] = "B_SUSHI";
+   sNameHACK["GreenTeapot_1"] = "B_GREEN_TEAPOT";
+   sNameHACK["ExtraPumpkin1"] = "BLOCK_PUMPKIN_1";
+   sNameHACK["ExtraPumpkin2"] = "BLOCK_PUMPKIN_2";
+   sNameHACK["ExtraGhostCostume"] = "BLOCK_GHOST_COSTUME";
+   sNameHACK["ExtraPumpkin3"] = "BLOCK_PUMPKIN_3";
+   sNameHACK["ExtraPumpkin4"] = "BLOCK_PUMPKIN_PIG_1";
+   sNameHACK["ExtraPumpkin5"] = "BLOCK_PUMPKIN_PIG_2";
+   sNameHACK["ExtraLantern1"] = "BLOCK_LANTERN";
 }
 
 function convertName(name)
