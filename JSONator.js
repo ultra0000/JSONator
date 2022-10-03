@@ -318,6 +318,13 @@ function initNameHACK()
    sNameHACK["ExtraPumpkin4"] = "BLOCK_PUMPKIN_PIG_1";
    sNameHACK["ExtraPumpkin5"] = "BLOCK_PUMPKIN_PIG_2";
    sNameHACK["ExtraLantern1"] = "BLOCK_LANTERN";
+   sNameHACK["BlockSnow1"] = "SNOW_BLOCK_2X2";
+   sNameHACK["BlockSnow2"] = "SNOW_BLOCK_4X2";
+   sNameHACK["BlockSnow3"] = "SNOW_BLOCK_6X2";
+   sNameHACK["BlockSnow4"] = "SNOW_BLOCK_4X4";
+   sNameHACK["BlockSnowBall1"] = "SNOW_CIRCLE_4X4";
+   sNameHACK["BlockSnowTriangle2"] = "SNOW_TRIANGLE_2X2";
+   sNameHACK["BlockSnowTriangle1"] = "SNOW_TRIANGLE_4X4";
 }
 
 function convertName(name)
@@ -502,6 +509,10 @@ function parseCamera(data, pixelRatio, id)
   if(data.ipad)
   {
     cameraData = data.ipad;
+  }
+  else if (data.windows)
+  {
+    cameraData = data.windows;
   }
   else
   {
