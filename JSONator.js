@@ -571,7 +571,6 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
      returnObject.debug = luaString;
   }
 
-  var previousCounts = returnObject.counts;
   delete returnObject.counts;
   returnObject.counts = {};
   returnObject.counts.birds = 0;
