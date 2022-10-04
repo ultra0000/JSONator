@@ -596,7 +596,6 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
            }
            delete returnObject.world[key].definition;
            delete returnObject.world[key].name;
-           delete returnObject.world[key].startNumber;
        }
    });
    if (key.includes("Block"))
@@ -607,6 +606,8 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
    }
    else if (key.includes("Bird"))
    {
+      returnObject.world[key].index = returnObject.world[key].startNumber - 1;
+      delete returnObject.world[key].startNumber;
       returnObject.counts.birds++;
       returnObject.world["bird_" + returnObject.counts.birds] = returnObject.world[key];
       delete returnObject.world[key];
@@ -663,15 +664,15 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
   // some renaming
   returnObject.id = returnObject.filename;
   delete returnObject.filename;
-  
-  // some deleting
-  delete returnObject.physicsToWorld;
   if (returnObject.scores) {
    returnObject.scoreGold = returnObject.scores.Gold;
    returnObject.scoreSilver = returnObject.scores.Silver;
    returnObject.scoreEagle = returnObject.scores.eagleScore;
    delete returnObject.scores;
   }
+  
+  // some deleting
+  delete returnObject.physicsToWorld;
 
   return returnObject;
 }
