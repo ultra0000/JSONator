@@ -506,18 +506,7 @@ function parseCamera(data, pixelRatio, id)
   var cameraData = {};
   var parsedCamaraData = {};
 
-  if(data.ipad)
-  {
-    cameraData = data.ipad;
-  }
-  else if (data.windows)
-  {
-    cameraData = data.windows;
-  }
-  else
-  {
-    cameraData = data.iphone;
-  }
+   cameraData = data.iphone;
 
   var cameraScreenWidth = cameraData.screenWidth;
   var cameraScreenHeight = cameraData.screenHeight;
