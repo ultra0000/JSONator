@@ -506,7 +506,14 @@ function parseCamera(data, pixelRatio, id)
   var cameraData = {};
   var parsedCamaraData = {};
 
-   cameraData = data.iphone;
+  if(data.ipad)
+  {
+     cameraData = data.ipad;
+  }
+  else
+  {
+     cameraData = data.iphone;
+  }
 
   var cameraScreenWidth = cameraData.screenWidth;
   var cameraScreenHeight = cameraData.screenHeight;
@@ -522,7 +529,6 @@ function parseCamera(data, pixelRatio, id)
   parsedCamaraData.scale = scale;
   parsedCamaraData.id = id;
 
-  // afaik these are the only ones but there could be more
   if(parsedCamaraData.id == "birdCameraData")
   {
       parsedCamaraData.id = "Slingshot";
@@ -542,7 +548,7 @@ function convertAngle(angle)
 
 function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = false)
 {
-   initNameHACK();
+  initNameHACK();
 
   var jsonString = null;
   var returnObject = null;
@@ -594,10 +600,16 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
    }
    else if (key.includes("Bird"))
    {
+      if (returnObject.world[key].startNumber == 1)
+      {
+         returnObject.slingshotX = returnObject.world[key].x;
+         returnObject.slingshotY = returnObject.world[key].y - 8.5;
+      }
+
       returnObject.world[key].index = returnObject.world[key].startNumber - 1;
-      delete returnObject.world[key].startNumber;
       returnObject.counts.birds++;
-      returnObject.world["bird_" + returnObject.counts.birds] = returnObject.world[key];
+      returnObject.world["bird_" + returnObject.world[key].startNumber] = returnObject.world[key];
+      delete returnObject.world[key].startNumber;
       delete returnObject.world[key];
    }
    else if (returnObject.world[key].id.includes("Ground"))
