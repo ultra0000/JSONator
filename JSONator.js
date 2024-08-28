@@ -40,6 +40,12 @@ function initNameHACK()
    sNameHACK["HelmetPiglette"] = "PIG_HELMET";
    sNameHACK["GrandpaPiglette"] = "PIG_MUSTACHE";
    sNameHACK["KingPiglette"] = "PIG_KING";
+   sNameHACK["MobileFriendsLargePiglette"] = "PIG_BASIC_BIG";
+   sNameHACK["MobileFriendsSmallPiglette"] = "PIG_BASIC_SMALL";
+   sNameHACK["MobileFriendsMediumPiglette"] = "PIG_BASIC_MEDIUM";
+   sNameHACK["MobileFriendsHelmetPiglette"] = "PIG_HELMET";
+   sNameHACK["MobileFriendsGrandpaPiglette"] = "PIG_MUSTACHE";
+   sNameHACK["MobileFriendsKingPiglette"] = "PIG_KING";
    sNameHACK["PIG_PORKADOR"] = "PIG_PORKADOR";
    sNameHACK["WoodBlock1"] = "WOOD_BLOCK_1X1";
    sNameHACK["WoodBlock2"] = "WOOD_BLOCK_2X1";
