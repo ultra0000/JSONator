@@ -31,6 +31,8 @@ function initNameHACK()
    sNameHACK["YellowBird"] = "BIRD_YELLOW";
    sNameHACK["BasicBird2"] = "BIRD_WHITE";
    sNameHACK["BlackBird"] = "BIRD_BLACK";
+   sNameHACK["GlobeBird"] = "BIRD_ORANGE";
+   sNameHACK["PinkBird"] = "BIRD_PINK";
    sNameHACK["BoomerangBird"] = "BIRD_GREEN";
    sNameHACK["LargePiglette"] = "PIG_BASIC_BIG";
    sNameHACK["SmallPiglette"] = "PIG_BASIC_SMALL";
