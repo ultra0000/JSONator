@@ -675,7 +675,7 @@ function parseLevel(luaString, emptyObjectAsArray = false, addJSONDebugString = 
   if (returnObject.scores) {
    returnObject.scoreGold = returnObject.scores.Gold;
    returnObject.scoreSilver = returnObject.scores.Silver;
-   returnObject.scoreEagle = returnObject.scores.eagleScore;
+   returnObject.scoreEagle = returnObject.scores.MightyEagle;
    delete returnObject.scores;
   }
   
