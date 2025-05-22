@@ -333,6 +333,8 @@ function initNameHACK()
    sNameHACK["BlockSnowBall1"] = "SNOW_CIRCLE_4X4";
    sNameHACK["BlockSnowTriangle2"] = "SNOW_TRIANGLE_2X2";
    sNameHACK["BlockSnowTriangle1"] = "SNOW_TRIANGLE_4X4";
+   sNameHACK["MiscFbGlasses"] = "MISC_FB_GLASSES";
+   sNameHACK["MiscFbTinyGlasses"] = "MISC_FB_TINYGLASSES";
 }
 
 function convertName(name)
