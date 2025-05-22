@@ -335,6 +335,7 @@ function initNameHACK()
    sNameHACK["BlockSnowTriangle1"] = "SNOW_TRIANGLE_4X4";
    sNameHACK["MiscFbGlasses"] = "MISC_FB_GLASSES";
    sNameHACK["MiscFbTinyGlasses"] = "MISC_FB_TINYGLASSES";
+   sNameHACK["MiscFbHat"] = "MISC_FB_HAT";
 }
 
 function convertName(name)
