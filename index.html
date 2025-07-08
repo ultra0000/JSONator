@@ -8,13 +8,30 @@
         <h1>JSONator</h1>
         <p>Upload a Lua level from an Angry Birds game and you might get a JSON level for the webgames.</p>
 
-        <p>Select themes:</p>
+        Select themes:<br>
         <input type="radio" id="ab_classic" name="gametype" value="ab_classic" checked>
         <label for="ab_classic">Angry Birds Classic</label>
         <br>
 
         <input type="radio" id="ab_seasons" name="gametype" value="ab_seasons">
         <label for="ab_seasons">Angry Birds Seasons</label>
+        
+        <br><br>
+
+        Select Camera Mode:<br>
+        <input type="radio" id="camera_default" name="cameramode" value="camera_default">
+        <label for="camera_default">Default</label>
+        <br>
+        <input type="radio" id="camera_windows" name="cameramode" value="camera_windows" checked>
+        <label for="camera_windows">Windows</label>
+        <br>
+        <input type="radio" id="camera_iphone" name="cameramode" value="camera_iphone">
+        <label for="camera_iphone">iPhone</label>
+        <br>
+        <input type="radio" id="camera_ipad" name="cameramode" value="camera_ipad">
+        <label for="camera_ipad">iPad</label>
+        <br>
+        <small style="size: 1px;">Default will be used if the selected mode isn't available for the uploaded level.</small>
         <br>
 
         <br><br>

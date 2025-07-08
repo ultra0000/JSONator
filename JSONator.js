@@ -2,6 +2,7 @@ sNameHACK = [];
 
 var selectedABClassic = false;
 var selectedABSeasons = false;
+var selectedCameraToUse = "windows";
 
 class HashMap
 {
@@ -517,13 +518,25 @@ function parseCamera(data, pixelRatio, id)
   var cameraData = {};
   var parsedCamaraData = {};
 
-  if(data.ipad)
+  switch (selectedCameraToUse)
   {
-     cameraData = data.ipad;
+      case "windows":
+         cameraData = data.windows;
+         break;
+      case "iphone":
+         cameraData = data.iphone;
+         break;
+      case "ipad":
+         cameraData = data.ipad;
+         break;
+      default:
+         cameraData = data;
+         break;
   }
-  else
+
+  if (!cameraData)
   {
-     cameraData = data.iphone;
+      cameraData = data;
   }
 
   var cameraScreenWidth = cameraData.screenWidth;
@@ -699,6 +712,22 @@ document.getElementById("parse").addEventListener('click', () => {
     {
       selectedABClassic = false;
       selectedABSeasons = true;
+    }
+    if (document.querySelector("#camera_default").checked)
+    {
+      selectedCameraToUse = "default";
+    }
+    else if (document.querySelector("#camera_windows").checked)
+    {
+      selectedCameraToUse = "windows";
+    }
+    else if (document.querySelector("#camera_iphone").checked)
+    {
+      selectedCameraToUse = "iphone";
+    }
+    else if (document.querySelector("#camera_ipad").checked)
+    {
+      selectedCameraToUse = "ipad";
     }
     if (document.getElementById('luaInput').files.length == 0)
         document.querySelector('span').hidden = false;
